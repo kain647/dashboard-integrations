@@ -1,17 +1,66 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import styled from "styled-components";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import DashboardIntegrations from "./dashboard-integrations";
+import Dashboard from "./dashboard";
+import Projects from "./projects";
+import "./index.css";
+import Reporting from "./reporting";
+import Tasks from "./tasks";
+import Users from "./users";
+const MainContent = styled.div`
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MainContent>
+      <Router>
+        <Switch>
+          <Route path={"/"} exact component={DashboardIntegrations} />
+          <Route
+            path={"/dashboard"}
+            exact
+            component={() => {
+              return <Dashboard />;
+            }}
+          />
+          <Route
+            path={"/projects"}
+            exact
+            component={() => {
+              return <Projects />;
+            }}
+          />
+          <Route
+            path={"/reporting"}
+            exact
+            component={() => {
+              return <Reporting />;
+            }}
+          />
+          <Route
+            path={"/tasks"}
+            exact
+            component={() => {
+              return <Tasks />;
+            }}
+          />
+          <Route
+            path={"/users"}
+            exact
+            component={() => {
+              return <Users />;
+            }}
+          />
+        </Switch>
+      </Router>
+    </MainContent>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
